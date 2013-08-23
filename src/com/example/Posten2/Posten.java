@@ -57,7 +57,7 @@ public class Posten extends Activity {
 
         ListDir(f);
 
-        //int fileListSize = 0;
+
         for (int i = 1; i < fileList.size(); i++) {
             String[] input = {fileList.get(i)};
 

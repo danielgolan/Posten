@@ -30,20 +30,19 @@ public class CustomDialogClass extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog);
         yes = (Button) findViewById(R.id.btn_yes);
-        et_sporingsnummer= (EditText)findViewById(R.id.sporingsnummer);
+        et_sporingsnummer = (EditText) findViewById(R.id.sporingsnummer);
         yes.setOnClickListener(this);
     }
 
 
-
     @Override
     public void onClick(View v) {
-        //To change body of implemented methods use File | Settings | File Templates.
+
         switch (v.getId()) {
 
             case R.id.btn_yes:
                 Posten posten = new Posten();
-                String [] input = {String.valueOf(et_sporingsnummer.toString())};
+                String[] input = {String.valueOf(et_sporingsnummer.toString())};
                 posten.startGetData(input);
                 File s = new File("data/data/com.example.Posten2/files");
                 posten.ListDir(s);
