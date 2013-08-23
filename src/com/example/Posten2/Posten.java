@@ -1,7 +1,6 @@
 package com.example.Posten2;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +32,6 @@ public class Posten extends Activity {
      */
 
     EditText et_sporingsnummer = null;
-    String ID = "";
     ListView lst_packages = null;
     String sporingsnummer = "";
     ProgressDialog pd;
@@ -80,7 +78,6 @@ public class Posten extends Activity {
                 //pd.show();
 
 
-
             }
         });
 
@@ -125,16 +122,18 @@ public class Posten extends Activity {
             oFile.write(json.getBytes());
             oFile.close();
         } catch (Exception ex) {
+
+            //TODO
         }
     }
 
     public void finnInfo(String sporingsnummer) {
         InputStream oFile;
-        String sentDato = null;
+        //String sentDato = null;
         String lesSisteStatus = null;
         String antallEventer = null;
         String avsenderLand = null;
-        String hentetDatoTid = null;
+        //String hentetDatoTid = null;
 
         ArrayList<String> samleStatuser = new ArrayList<String>();
         try {
@@ -142,7 +141,7 @@ public class Posten extends Activity {
             InputStreamReader oReader = new InputStreamReader(oFile);
             BufferedReader oBuffer = new BufferedReader(oReader);
             String sText = "";
-            String sEachLine = "";
+            String sEachLine;
 
             while ((sEachLine = oBuffer.readLine()) != null) {
                 sText += sEachLine;
@@ -154,16 +153,15 @@ public class Posten extends Activity {
 
             HenteFelt henteFelt = new HenteFelt();
             Boolean riktigSporing = henteFelt.sjekkSporingsNummer(object);
-            if (riktigSporing == false) {
+            if (riktigSporing != null && !riktigSporing) {
 
                 Toast.makeText(getApplicationContext(), "Sporingsnummer er feil", Toast.LENGTH_SHORT).show();
                 // TODO finn en måte å informere bruker om at sporingsnummeret er feil, skal bruker få lov til å beholde det ?
-            } else if (riktigSporing == true) {
+            } else if (riktigSporing != null && riktigSporing) {
                 lesSisteStatus = henteFelt.lesSisteStatus(object);
                 antallEventer = henteFelt.antallEventer(object);
                 avsenderLand = henteFelt.avsenderLand(object);
                 samleStatuser = henteFelt.samleStatuser(object);
-
 
 
             }
@@ -231,7 +229,7 @@ public class Posten extends Activity {
                 HttpEntity r_entity = response.getEntity();
                 jsonReturnText = EntityUtils.toString(r_entity);
             } catch (Exception e) {
-
+                //Cathc exception here
 
             }
             return jsonReturnText;

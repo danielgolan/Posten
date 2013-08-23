@@ -1,14 +1,11 @@
 package com.example.Posten2;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +31,7 @@ public class HenteFelt extends Activity {
             JSONObject object3 = eventSet.getJSONObject(countEvents);
             String country = object3.getString("country");
 
-            returnString = " country";
+            returnString = country;
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -65,6 +62,7 @@ public class HenteFelt extends Activity {
     }
 
     public String sentDato(JSONObject object) {
+        //Not used for now
 
         try {
             JSONArray consignmentSet = object.getJSONArray("consignmentSet");
@@ -105,11 +103,7 @@ public class HenteFelt extends Activity {
     public ArrayList<String> samleStatuser(JSONObject object) {
 
         Integer countEvents = 0;
-        String buffer = "";
-        String dato = "";
-        String tid = "";
-
-        ArrayList<String> arrayList = new ArrayList<String>();
+        String dato,tid,buffer;
 
 
         try {
@@ -184,6 +178,8 @@ public class HenteFelt extends Activity {
     }
 
     public String hentetDatoTid(JSONObject object) {
+
+        //
         try {
             JSONArray consignmentSet = object.getJSONArray("consignmentSet");
             JSONObject object1 = consignmentSet.getJSONObject(0);
@@ -205,13 +201,14 @@ public class HenteFelt extends Activity {
     }
 
     public boolean sjekkSporingsNummer(JSONObject object) {
-        Boolean riktigSporing = null;
+        Boolean riktigSporing ;
+
+        //Not the most efficient way to check if the tracking number is correct but it works
 
         try {
             JSONArray consignmentSet = object.getJSONArray("consignmentSet");
             JSONObject object1 = consignmentSet.getJSONObject(0);
             JSONObject object2 = object1.getJSONObject("error");
-            String s = object2.getString("message");
             riktigSporing = false;
 
 
@@ -225,7 +222,6 @@ public class HenteFelt extends Activity {
 
 
     }
-
 
 
 }
