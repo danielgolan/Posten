@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center">
+
+    <TableLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TableRow>
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sporingsnummer :"
+                    android:id="@+id/textView"/>
+
+            <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/txt_sporingsnummer"/>
+        </TableRow>
+
+        <TableRow android:layout_width="fill_parent">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sist Oppdatert :"
+                    android:id="@+id/textView"/>
+
+            <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/txt_sisteOppdatering"/>
+        </TableRow>
+
+        <TableRow android:layout_width="fill_parent">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Avsenderland :"
+                    android:id="@+id/textView"/>
+
+            <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/txt_avsenderLand"/>
+        </TableRow>
+
+        <TableRow android:layout_width="fill_parent">
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+    <ListView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:id="@+id/lst_status"
+
+            android:layout_marginTop="70dp"
+
+            ></ListView>
+
+
+
+
+
+</RelativeLayout>
