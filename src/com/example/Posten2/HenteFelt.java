@@ -103,7 +103,7 @@ public class HenteFelt extends Activity {
     public ArrayList<String> samleStatuser(JSONObject object) {
 
         Integer countEvents = 0;
-        String dato,tid,buffer;
+        String dato, tid, buffer;
 
 
         try {
@@ -201,7 +201,7 @@ public class HenteFelt extends Activity {
     }
 
     public boolean sjekkSporingsNummer(JSONObject object) {
-        Boolean riktigSporing ;
+        Boolean riktigSporing;
 
         //Not the most efficient way to check if the tracking number is correct but it works
 
