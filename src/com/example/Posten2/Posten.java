@@ -49,12 +49,15 @@ public class Posten extends Activity {
         et_sporingsnummer = (EditText) findViewById(R.id.editText);
         et_sporingsnummer.setText("TESTPACKAGE-AT-PICKUPPOINT");
 
+        //Setup a ProgressDialog which shows a loading window
         pd = ProgressDialog.show(Posten.this, "Laster...", "Laster ned data fra posten", true, false, null);
+        // Dismiss the loading window
         pd.dismiss();
 
 
+        //Setup a new file instance and set it to the appdata directory
         File f = new File("data/data/com.example.Posten2/files");
-
+        //Use file as stated above to call refresh of the list view
         ListDir(f);
 
 
