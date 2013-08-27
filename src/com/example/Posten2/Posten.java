@@ -76,8 +76,12 @@ public class Posten extends Activity {
                 String[] input = {String.valueOf(et_sporingsnummer.getText())};
                 sporingsnummer = et_sporingsnummer.getText().toString();
                 new GetData().execute(input);
-                File s = new File("data/data/com.example.Posten2/files");
-                ListDir(s);
+                //Setup a new file instance and set it to the appdata directory
+                File f = new File("data/data/com.example.Posten2/files");
+                //Use file as stated above to call refresh of the list view
+                ListDir(f);
+
+                //Call Progrss
                 //pd.show();
 
 
@@ -140,6 +144,8 @@ public class Posten extends Activity {
 
         ArrayList<String> samleStatuser = new ArrayList<String>();
         try {
+            // Read the file that user selected
+
             oFile = openFileInput(sporingsnummer + ".json");
             InputStreamReader oReader = new InputStreamReader(oFile);
             BufferedReader oBuffer = new BufferedReader(oReader);
@@ -151,16 +157,18 @@ public class Posten extends Activity {
             }
             oReader.close();
             JSONObject object = new JSONObject(sText);
-            //Sjekk om pakken er registrert eller ikke
 
 
+            //Check package package response
             HenteFelt henteFelt = new HenteFelt();
             Boolean riktigSporing = henteFelt.sjekkSporingsNummer(object);
             if (riktigSporing != null && !riktigSporing) {
 
+                //  Tracking number is wrong
                 Toast.makeText(getApplicationContext(), "Sporingsnummer er feil", Toast.LENGTH_SHORT).show();
                 // TODO finn en måte å informere bruker om at sporingsnummeret er feil, skal bruker få lov til å beholde det ?
             } else if (riktigSporing != null && riktigSporing) {
+                //  Tracking number is correct
                 lesSisteStatus = henteFelt.lesSisteStatus(object);
                 antallEventer = henteFelt.antallEventer(object);
                 avsenderLand = henteFelt.avsenderLand(object);
@@ -192,6 +200,7 @@ public class Posten extends Activity {
     }
 
     void ListDir(File f) {
+        //Method that runs through stored files and then updates the list view
         File[] files = f.listFiles();
         fileList.clear();
         for (File file : files) {
@@ -207,7 +216,7 @@ public class Posten extends Activity {
     }
 
     void startGetData(String... input) {
-
+        //Used so that its possible to call getData from another class
         new GetData().execute(input);
 
     }
@@ -232,7 +241,7 @@ public class Posten extends Activity {
                 HttpEntity r_entity = response.getEntity();
                 jsonReturnText = EntityUtils.toString(r_entity);
             } catch (Exception e) {
-                //Cathc exception here
+                //Catch exception here
 
             }
             return jsonReturnText;
