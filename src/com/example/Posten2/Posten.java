@@ -226,8 +226,9 @@ public class Posten extends Activity {
         protected String doInBackground(String... data) {
 
 
+
             String URL = "http://sporing.bring.no/sporing.json?q=" + data[0];
-            String jsonReturnText = "";
+            String returnText = "";
 
             try {
                 HttpParams httpParameters = new BasicHttpParams();
@@ -239,12 +240,12 @@ public class Posten extends Activity {
                 HttpGet httpget = new HttpGet(URL);
                 HttpResponse response = httpclient.execute(httpget);
                 HttpEntity r_entity = response.getEntity();
-                jsonReturnText = EntityUtils.toString(r_entity);
+                returnText = EntityUtils.toString(r_entity);
             } catch (Exception e) {
                 //Catch exception here
 
             }
-            return jsonReturnText;
+            return returnText;
         }
 
         protected void onPostExecute(String result) {
