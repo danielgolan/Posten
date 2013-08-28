@@ -184,7 +184,7 @@ public class Posten extends Activity {
             e.printStackTrace();
         }
 
-        et_sporingsnummer.setText(" ");
+        et_sporingsnummer.setText("");
 
         Intent intent = new Intent(Posten.this, DetailView.class);
         intent.putExtra("sporingsnummer", sporingsnummer);
